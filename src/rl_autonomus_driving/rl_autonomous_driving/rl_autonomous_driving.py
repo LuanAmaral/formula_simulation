@@ -22,6 +22,7 @@ class RlControler(Node):
         
         self.car_state = None
         self.car_mission = None
+        self.rewards = []
         
         self.environment = env.EufsEnv(delay=0.1)
         state_dim = self.environment.observation_space.shape[0]
@@ -78,9 +79,15 @@ class RlControler(Node):
                 self.get_logger().info("Episode: {}, Total Steps: {}, Episode Reward: {}".format(i, total_steps, episode_reward))
                 self.agent.update()
                 
+                self.rewards.append(episode_reward)
+                
                 if i % self.log_interval == 0:
                     self.agent.save()
                     self.get_logger().info("Model saved at episode: {}".format(i))
+                    
+                    # save rewards in file
+                    np.save("rewards", self.rewards)
+                     
         
             self.environment.reset()
             
