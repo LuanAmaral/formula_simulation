@@ -1,8 +1,14 @@
+#!/bin/bash
+
 IMAGE_NAME="formula-simulation"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
+
+xhost +local:root
+
+echo $1
 
 # Check for a "rebuild" flag
 if [[ "$1" == "--rebuild" ]]; then
@@ -25,3 +31,5 @@ docker compose up -d
 docker exec -it formula_simulation bash
 
 docker compose down
+
+xhost -local:root

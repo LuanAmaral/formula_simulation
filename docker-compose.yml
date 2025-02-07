@@ -2,7 +2,7 @@
 services:
   ros-simulation:
     image: formula-simulation
-    # runtime: nvidia
+    runtime: nvidia
     container_name: formula_simulation
     volumes:
       - ./:/ros2_ws

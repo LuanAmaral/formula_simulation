@@ -16,10 +16,15 @@ apt update && apt-get update && apt-get install -y \
     ros-galactic-ackermann-msgs \
     ros-galactic-xacro \
     ros-galactic-yaml-cpp-vendor \
-    libyaml-cpp-dev &&\
+    libyaml-cpp-dev \
+    &&\
 
 
 rm -rf /var/lib/apt/lists/*
+
+# Install pytorch
+pip3 install torch torchvision torchaudio
+        
 
 
 # Build ROS2 workspace

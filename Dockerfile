@@ -20,68 +20,31 @@ RUN apt-get update && apt-get install -y \
     python3-rosdep \
     python3-vcstool \
     x11-apps \
-    python3-tk \
-    libgl1-mesa-glx \
-    libxrender1 \
-    libxext6 \
-    libxcb-xinerama0 \
-    libxcb-icccm4 \
-    libxcb-image0 \
-    libxcb-keysyms1 \
-    libxcb-randr0 \
-    libxcb-render-util0 \
-    libxcb-shape0 \
-    libxcb-shm0 \
-    libxcb-sync1 \
-    libxcb-xfixes0 \
-    libxcb-xkb1 \
-    libxkbcommon-x11-0 \
-    libfontconfig1 \
-    libdbus-1-3 \
-    libxcomposite1 \
-    libxcursor1 \
-    libxi6 \
-    libxtst6 \
-    libxrandr2 \
-    libxss1 \
-    libxv1 \
-    libxinerama1 \
-    libxkbcommon0 \
-    libwayland-client0 \
-    libwayland-cursor0 \
-    libwayland-egl1 \
-    libegl1-mesa \
-    libegl1 \
-    libgbm1 \
-    libgl1-mesa-dri \
-    libgl1 \
-    libglvnd0 \
-    libglx0 \
-    libopengl0 \
-    libx11-xcb1 \
-    libxcb-glx0 \
-    libxcb-dri3-0 \
-    libxcb-dri2-0 \
-    libxcb-present0 \
-    libxcb-sync1 \
-    libxcb-xfixes0 \
-    libxcb-shape0 \
-    libxcb-render0 \
-    libxcb-randr0 \
-    libxcb-xinerama0 \
-    libxcb-xkb1 \
-    libxkbcommon-x11-0 \
     ros-galactic-gazebo-ros \
     ros-galactic-rviz2 \
     ros-galactic-joint-state-publisher \
     ros-galactic-ackermann-msgs \
     ros-galactic-xacro \
     ros-galactic-yaml-cpp-vendor \
-    libyaml-cpp-dev &&\
+    libyaml-cpp-dev \
+    python3-pip \
+    ros-galactic-ackermann-msgs \
+    python3-tk \
+    &&\
     rm -rf /var/lib/apt/lists/*
 
 # Create a workspace for your simulation
 WORKDIR /ros2_ws
+
+# Install pytorch
+RUN pip3 install \
+    numpy \
+    torch \
+    torchvision \
+    torchaudio \
+    gym \
+    numpy-quaternion \
+    tensorboard     
 
 # Set .bashrc
 COPY bash.sh /ros2_ws/bash.sh
