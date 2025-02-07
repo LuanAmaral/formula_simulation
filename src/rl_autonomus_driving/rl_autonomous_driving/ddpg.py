@@ -133,7 +133,7 @@ class DDPG(object):
         self.num_training = 0
 
     def select_action(self, state):
-        state = torch.FloatTensor(state.reshape(1, -1)).to(device)
+        state = torch.FloatTensor(state).to(device)
         return self.actor(state).cpu().data.numpy().flatten()
 
     def update(self):
